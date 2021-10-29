@@ -16,6 +16,7 @@ public class Appointment {
     private Task task;
 
     @Column
+    @Enumerated(EnumType.STRING)
     private Status status;
 
     @Column

@@ -1,0 +1,64 @@
+databaseChangeLog:
+  - logicalFilePath: db/changelog/liquibase-changelog.yaml
+  - changeSet:
+      id: 1
+      author: brainbuffer
+      changes:
+        - CREATE TYPE Status AS ENUM(SKIPPED,COMPLETED,MISSED)
+        - createTable:
+            tableName: BB_TASK
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: UserId
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: Name
+                  type: varchar(50)
+                  constraints:
+                    unique: true
+                    nullable: false
+              - column:
+                  name: createdAt
+                  type: Date
+              - column:
+                  name: duration
+                  type: interval
+
+        - createTable:
+            tableName: BB_APPOINTMENT
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: task_id
+                  type: BIGINT
+                  constraints:
+                    - nullable: false
+                    - foreignKeyName: fk_task
+                    - references: BB_TASK(id)
+              - column:
+                  name: status
+                  type: varchar(50)
+              - column:
+                  name: time
+                  type: Date
+              - column:
+                  name: createdAt
+                  type: Date
+              - column:
+                  name: durationOffset
+                  type: interval
