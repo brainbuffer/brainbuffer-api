@@ -52,7 +52,7 @@ databaseChangeLog:
                     - references: BB_TASK(id)
               - column:
                   name: status
-                  type: varchar(50)
+                  type: varchar(10)
               - column:
                   name: time
                   type: Date
