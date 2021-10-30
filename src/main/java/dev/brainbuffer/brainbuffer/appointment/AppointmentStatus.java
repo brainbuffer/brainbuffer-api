@@ -1,6 +1,6 @@
 package dev.brainbuffer.brainbuffer.appointment;
 
-public enum Status {
+public enum AppointmentStatus {
     SKIPPED,
     COMPLETED,
     MISSED

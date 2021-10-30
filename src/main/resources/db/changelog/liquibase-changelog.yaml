@@ -4,9 +4,8 @@ databaseChangeLog:
       id: 1
       author: brainbuffer
       changes:
-        - CREATE TYPE Status AS ENUM(SKIPPED,COMPLETED,MISSED)
         - createTable:
-            tableName: BB_TASK
+            tableName: tasks
             columns:
               - column:
                   name: id
@@ -16,25 +15,25 @@ databaseChangeLog:
                     primaryKey: true
                     nullable: false
               - column:
-                  name: UserId
+                  name: user_id
                   type: varchar(50)
                   constraints:
                     nullable: false
               - column:
-                  name: Name
+                  name: name
                   type: varchar(50)
                   constraints:
                     unique: true
                     nullable: false
               - column:
-                  name: createdAt
-                  type: Date
+                  name: created_at
+                  type: timestamp
               - column:
                   name: duration
                   type: interval
 
         - createTable:
-            tableName: BB_APPOINTMENT
+            tableName: appointments
             columns:
               - column:
                   name: id
@@ -49,16 +48,16 @@ databaseChangeLog:
                   constraints:
                     - nullable: false
                     - foreignKeyName: fk_task
-                    - references: BB_TASK(id)
+                    - references: tasks(id)
               - column:
                   name: status
                   type: varchar(10)
               - column:
                   name: time
-                  type: Date
+                  type: timestamp
               - column:
-                  name: createdAt
-                  type: Date
+                  name: created_at
+                  type: timestamp
               - column:
-                  name: durationOffset
+                  name: duration_offset
                   type: interval
